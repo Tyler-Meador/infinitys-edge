@@ -12,7 +12,7 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['infinitys-edge', 'sheet', 'actor'],
-      width: 600,
+      width: 1000,
       height: 600,
       tabs: [
         {
@@ -104,6 +104,7 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
   _prepareItems(context) {
     // Initialize containers.
     const gear = [];
+    const weapons = [];
     const features = [];
     const spells = {
       0: [],
@@ -135,12 +136,16 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
           spells[i.system.spellLevel].push(i);
         }
       }
+      else if (i.type === 'weapon') {
+        weapons.push(i);
+      }
     }
 
     // Assign and return
     context.gear = gear;
     context.features = features;
     context.spells = spells;
+    context.weapons = weapons;
   }
 
   /* -------------------------------------------- */

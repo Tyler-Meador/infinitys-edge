@@ -7,10 +7,12 @@
   background: rgba(0, 0, 0, 0.05);
   border: $border-groove;
   font-weight: bold;
-  > * {
+
+  >* {
     font-size: 14px;
     text-align: center;
   }
+
   .item-name {
     font-weight: bold;
     padding-left: 5px;
@@ -41,14 +43,16 @@
 
   // Item Name
   .item-name {
-    flex: 2;
+    flex: 1;
     margin: 0;
     overflow: hidden;
     font-size: 13px;
     text-align: left;
     align-items: center;
     display: flex;
-    h3, h4 {
+
+    h3,
+    h4 {
       margin: 0;
       white-space: nowrap;
       overflow-x: hidden;
@@ -60,6 +64,7 @@
     display: flex;
     flex: 0 0 100px;
     justify-content: flex-end;
+
     a {
       font-size: 12px;
       text-align: center;
@@ -72,9 +77,14 @@
     align-items: center;
     padding: 0 2px; // to align with the header border
     border-bottom: 1px solid $c-faint;
-    &:last-child { border-bottom: none; }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
     .item-name {
       color: $c-dark;
+
       .item-image {
         flex: 0 0 30px;
         height: 30px;
@@ -96,26 +106,40 @@
   .items-header {
     height: 28px;
     margin: 2px 0;
-    padding: 0;
+    padding: 0 2px;
     align-items: center;
     background: rgba(0, 0, 0, 0.05);
     border: $border-groove;
     font-weight: bold;
-    > * {
+
+    >* {
       font-size: 12px;
       text-align: center;
     }
+
     .item-name {
       padding-left: 5px;
       text-align: left;
       // font-size: 16px;
     }
   }
+
+  .item-list-item {
+    padding: 3px 0;
+    align-items: center;
+    text-align: center;
+    margin: 2px;
+    background: rgba(0, 0, 0, 0.04);
+
+    &:nth-child(2n) {
+      background: none;
+    }
+  }
 }
 
 // Example style for InfinitysEdge (can be removed if not needed).
 .item-formula {
-  
+
   flex: 0 0 200px;
   padding: 0 8px;
 }

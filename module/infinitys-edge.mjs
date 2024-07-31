@@ -31,7 +31,7 @@ Hooks.once('init', function () {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: '1d20 + @abilities.dex.mod',
+    formula: '1d100 + @abilities.dex.mod',
     decimals: 2,
   };
 
@@ -49,7 +49,8 @@ Hooks.once('init', function () {
   CONFIG.Item.dataModels = {
     item: models.InfinitysEdgeItem,
     feature: models.InfinitysEdgeFeature,
-    spell: models.InfinitysEdgeSpell
+    spell: models.InfinitysEdgeSpell,
+    weapon: models.InfinitysEdgeWeapon
   }
 
   // Active Effects are never copied to the Actor,

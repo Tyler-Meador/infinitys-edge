@@ -1,0 +1,70 @@
+{{! This template is a fallback for when items don't have more specific templates. }}
+{{! Generally, you'll want to make more specific templates when possible. }}
+<form class='{{cssClass}}' autocomplete='off'>
+  <header class='sheet-header'>
+    <img class='profile-img' src='{{item.img}}' data-edit='img' title='{{item.name}}' />
+    <div class='header-fields'>
+      <h1 class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='Name' /></h1>
+    </div>
+  </header>
+
+  {{! Sheet Tab Navigation }}
+  <nav class='sheet-tabs tabs' data-group='primary'>
+    <a class='item' data-tab='description'>Description</a>
+    <a class='item' data-tab='attributes'>Attributes</a>
+  </nav>
+
+  {{! Sheet Body }}
+  <section class='sheet-body'>
+
+    {{! Description Tab }}
+    <div class='tab' data-group='primary' data-tab='description'>
+      {{! Editors must receive enriched text data from getData to properly handle rolls }}
+      {{editor
+      enrichedDescription
+      target='system.description'
+      engine='prosemirror'
+      button=true
+      editable=editable
+      }}
+    </div>
+
+    {{! Attributes Tab }}
+    <div class='tab attributes' data-group='primary' data-tab='attributes'>
+      <div class="resource">
+        <label class='resource-label'>Roll Formula:</label>
+        <span>{{system.formula}}</span>
+        <div class="grid grid-3col">
+          <div class="grid-span-1">
+            <label class="resource-label">Weapon Type</label>
+            <input type='text' name='system.weaponType' value='{{system.weaponType}}' data-dtype='String' />
+          </div>
+          <div class="grid-span-1">
+            <label class="resource-label">Rarity</label>
+            <input type='text' name='system.rarity' value='{{system.rarity}}' data-dtype='String' />
+          </div>
+          <div class="grid-span-1">
+            <label class="resource-label">Skill</label>
+            <input type='text' name='system.level' value='{{system.level}}' data-dtype='Number' />
+          </div>
+        </div>
+        <div class="grid grid-3col">
+          <div class="grid-span-1">
+            <label class="resource-label">Damage</label>
+            <input type='text' name='system.damage' value='{{system.damage}}' data-dtype='Number' />
+          </div>
+          <div class="grid-span-1">
+            <label class="resource-label">Attribute</label>
+            <input type='text' name='system.attribute' value='{{system.attribute}}' data-dtype='String' />
+          </div>
+          <div class="grid-span-1">
+            <label class="resource-label">Bonus Dice</label>
+            <input type='text' name='system.dice' value='{{system.dice}}' data-dtype='String' />
+          </div>
+        </div>
+        <label class="resource-label">Enhancements</label>
+        <input type='text' name='system.enhancements' value='{{system.enhancements}}' data-dtype='String' />
+      </div>
+    </div>
+  </section>
+</form>

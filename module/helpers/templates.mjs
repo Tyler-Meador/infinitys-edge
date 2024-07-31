@@ -10,6 +10,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/infinitys-edge/templates/actor/parts/actor-items.hbs',
     'systems/infinitys-edge/templates/actor/parts/actor-spells.hbs',
     'systems/infinitys-edge/templates/actor/parts/actor-effects.hbs',
+    'systems/infinitys-edge/templates/actor/parts/actor-weapons.hbs',
     // Item partials
     'systems/infinitys-edge/templates/item/parts/item-effects.hbs',
   ]);
