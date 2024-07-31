@@ -43,17 +43,17 @@ export function prepareActiveEffectCategories(effects) {
   const categories = {
     temporary: {
       type: 'temporary',
-      label: game.i18n.localize('INFINTYS_EDGE.Effect.Temporary'),
+      label: game.i18n.localize('INFINITYS_EDGE.Effect.Temporary'),
       effects: [],
     },
     passive: {
       type: 'passive',
-      label: game.i18n.localize('INFINTYS_EDGE.Effect.Passive'),
+      label: game.i18n.localize('INFINITYS_EDGE.Effect.Passive'),
       effects: [],
     },
     inactive: {
       type: 'inactive',
-      label: game.i18n.localize('INFINTYS_EDGE.Effect.Inactive'),
+      label: game.i18n.localize('INFINITYS_EDGE.Effect.Inactive'),
       effects: [],
     },
   };

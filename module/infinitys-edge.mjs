@@ -6,7 +6,7 @@ import { InfinitysEdgeActorSheet } from './sheets/actor-sheet.mjs';
 import { InfinitysEdgeItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
-import { INFINTYS_EDGE } from './helpers/config.mjs';
+import { INFINITYS_EDGE } from './helpers/config.mjs';
 // Import DataModel classes
 import * as models from './data/_module.mjs';
 
@@ -24,7 +24,7 @@ Hooks.once('init', function () {
   };
 
   // Add custom constants for configuration.
-  CONFIG.INFINTYS_EDGE = INFINTYS_EDGE;
+  CONFIG.INFINITYS_EDGE = INFINITYS_EDGE;
 
   /**
    * Set an initiative formula for the system
@@ -61,12 +61,12 @@ Hooks.once('init', function () {
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('infinitys-edge', InfinitysEdgeActorSheet, {
     makeDefault: true,
-    label: 'INFINTYS_EDGE.SheetLabels.Actor',
+    label: 'INFINITYS_EDGE.SheetLabels.Actor',
   });
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('infinitys-edge', InfinitysEdgeItemSheet, {
     makeDefault: true,
-    label: 'INFINTYS_EDGE.SheetLabels.Item',
+    label: 'INFINITYS_EDGE.SheetLabels.Item',
   });
 
   // Preload Handlebars templates.

@@ -1,23 +1,23 @@
-export const INFINTYS_EDGE = {};
+export const INFINITYS_EDGE = {};
 
 /**
  * The set of Ability Scores used within the system.
  * @type {Object}
  */
-INFINTYS_EDGE.abilities = {
-  str: 'INFINTYS_EDGE.Ability.Str.long',
-  dex: 'INFINTYS_EDGE.Ability.Dex.long',
-  con: 'INFINTYS_EDGE.Ability.Con.long',
-  int: 'INFINTYS_EDGE.Ability.Int.long',
-  wis: 'INFINTYS_EDGE.Ability.Wis.long',
-  cha: 'INFINTYS_EDGE.Ability.Cha.long',
+INFINITYS_EDGE.abilities = {
+  str: 'INFINITYS_EDGE.Ability.Str.long',
+  dex: 'INFINITYS_EDGE.Ability.Dex.long',
+  con: 'INFINITYS_EDGE.Ability.Con.long',
+  int: 'INFINITYS_EDGE.Ability.Int.long',
+  wis: 'INFINITYS_EDGE.Ability.Wis.long',
+  cha: 'INFINITYS_EDGE.Ability.Cha.long',
 };
 
-INFINTYS_EDGE.abilityAbbreviations = {
-  str: 'INFINTYS_EDGE.Ability.Str.abbr',
-  dex: 'INFINTYS_EDGE.Ability.Dex.abbr',
-  con: 'INFINTYS_EDGE.Ability.Con.abbr',
-  int: 'INFINTYS_EDGE.Ability.Int.abbr',
-  wis: 'INFINTYS_EDGE.Ability.Wis.abbr',
-  cha: 'INFINTYS_EDGE.Ability.Cha.abbr',
+INFINITYS_EDGE.abilityAbbreviations = {
+  str: 'INFINITYS_EDGE.Ability.Str.abbr',
+  dex: 'INFINITYS_EDGE.Ability.Dex.abbr',
+  con: 'INFINITYS_EDGE.Ability.Con.abbr',
+  int: 'INFINITYS_EDGE.Ability.Int.abbr',
+  wis: 'INFINITYS_EDGE.Ability.Wis.abbr',
+  cha: 'INFINITYS_EDGE.Ability.Cha.abbr',
 };

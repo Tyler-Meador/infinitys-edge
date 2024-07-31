@@ -65,8 +65,8 @@ export class InfinitysEdgeItemSheet extends ItemSheet {
     context.system = itemData.system;
     context.flags = itemData.flags;
 
-    // Adding a pointer to CONFIG.INFINTYS_EDGE
-    context.config = CONFIG.INFINTYS_EDGE;
+    // Adding a pointer to CONFIG.INFINITYS_EDGE
+    context.config = CONFIG.INFINITYS_EDGE;
 
     // Prepare active effects for easier access
     context.effects = prepareActiveEffectCategories(this.item.effects);

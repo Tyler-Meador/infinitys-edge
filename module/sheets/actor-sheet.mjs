@@ -46,8 +46,8 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
     context.system = actorData.system;
     context.flags = actorData.flags;
 
-    // Adding a pointer to CONFIG.INFINTYS_EDGE
-    context.config = CONFIG.INFINTYS_EDGE;
+    // Adding a pointer to CONFIG.INFINITYS_EDGE
+    context.config = CONFIG.INFINITYS_EDGE;
 
     // Prepare character data and items.
     if (actorData.type == 'character') {
