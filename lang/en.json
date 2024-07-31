@@ -2,10 +2,11 @@
   "INFINITYS_EDGE": {
     "Ability": {
       "Str": { "long": "Strength", "abbr": "str" },
-      "Con": { "long": "Constitution", "abbr": "con" },
+      "Vit": { "long": "Vitality", "abbr": "vit" },
       "Dex": { "long": "Dexterity", "abbr": "dex" },
       "Int": { "long": "Intelligence", "abbr": "int" },
       "Wis": { "long": "Wisdom", "abbr": "wis" },
+      "Wil": { "long": "Willpower", "abbr": "wil "},
       "Cha": { "long": "Charisma", "abbr": "cha" }
     },
     "SheetLabels": {
