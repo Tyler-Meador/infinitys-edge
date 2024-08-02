@@ -9,7 +9,7 @@ export default class InfinitysEdgeWeapon extends InfinitysEdgeItemBase {
 
     schema.weaponType = new fields.StringField({ required: true, blank: true });
     schema.rarity = new fields.StringField({ required: true, blank: true });
-    schema.level = new fields.NumberField({ ...requiredInteger, initial: 1, min: 0 });
+    schema.level = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
     schema.damage = new fields.NumberField({ ...requiredInteger, initial: 8, min: 0 });
     schema.attribute = new fields.StringField({ required: true, blank: true });
     schema.dice = new fields.StringField({ required: true, blank: true });

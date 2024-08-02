@@ -50,7 +50,8 @@ Hooks.once('init', function () {
     item: models.InfinitysEdgeItem,
     feature: models.InfinitysEdgeFeature,
     spell: models.InfinitysEdgeSpell,
-    weapon: models.InfinitysEdgeWeapon
+    weapon: models.InfinitysEdgeWeapon,
+    armor: models.InfinitysEdgeArmor
   }
 
   // Active Effects are never copied to the Actor,
@@ -82,6 +83,10 @@ Hooks.once('init', function () {
 Handlebars.registerHelper('toLowerCase', function (str) {
   return str.toLowerCase();
 });
+
+Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+})
 
 /* -------------------------------------------- */
 /*  Ready Hook                                  */

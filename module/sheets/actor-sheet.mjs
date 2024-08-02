@@ -118,6 +118,14 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
       8: [],
       9: [],
     };
+    const armor = {
+      "head": {},
+      "torso": {},
+      "left_arm": {},
+      "right_arm": {},
+      "left_leg": {},
+      "right_leg": {}
+    };
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
@@ -138,6 +146,12 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
       }
       else if (i.type === 'weapon') {
         weapons.push(i);
+      } else if (i.type === 'armor') {
+        var armorType = i.system.armorType.toLowerCase()
+        
+        if (i.system.armorType != undefined) {
+          armor[armorType] = i;
+        }
       }
     }
 
@@ -146,6 +160,7 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
     context.features = features;
     context.spells = spells;
     context.weapons = weapons;
+    context.armor = armor;
   }
 
   /* -------------------------------------------- */
