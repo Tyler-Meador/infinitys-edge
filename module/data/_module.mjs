@@ -10,3 +10,4 @@ export {default as InfinitysEdgeFeature} from "./item-feature.mjs";
 export {default as InfinitysEdgeSpell} from "./item-spell.mjs";
 export {default as InfinitysEdgeWeapon} from "./item-weapon.mjs";
 export {default as InfinitysEdgeArmor} from "./item-armor.mjs";
+export {default as InfinitysEdgeSkill} from "./item-skill.mjs";

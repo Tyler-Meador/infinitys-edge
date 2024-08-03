@@ -51,7 +51,8 @@ Hooks.once('init', function () {
     feature: models.InfinitysEdgeFeature,
     spell: models.InfinitysEdgeSpell,
     weapon: models.InfinitysEdgeWeapon,
-    armor: models.InfinitysEdgeArmor
+    armor: models.InfinitysEdgeArmor,
+    skill: models.InfinitysEdgeSkill
   }
 
   // Active Effects are never copied to the Actor,

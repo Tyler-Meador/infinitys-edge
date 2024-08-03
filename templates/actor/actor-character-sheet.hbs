@@ -7,11 +7,11 @@
       <div class="resources grid grid-3col">
         <div class="resource">
           <label for="system.ancestry" class="resource-label"><small>Ancestry</small></label>
-          <input type="text" name="system.ancestry" value="{{system.ancestry}}" data-dtype="Number" />
+          <input type="text" name="system.ancestry" value="{{system.ancestry}}" />
         </div>
         <div class="resource">
           <label for="system.faction" class="resource-label"><small>Faction</small></label>
-          <input type="text" name="system.faction" value="{{system.faction}}" data-dtype="Number" />
+          <input type="text" name="system.faction" value="{{system.faction}}"/>
         </div>
         <div class="resource">
           <label for="system.credits" class="resource-label"><small>Credits</small></label>
@@ -25,7 +25,7 @@
         </div>
         <div class="resource">
           <label for="system.level" class="resource-label"><small>Level</small></label>
-          <input type="text" name="system.level" value="{{system.level}}" />
+          <input type="text" name="system.level" value="{{system.level}}" data-dtype="Number"/>
         </div>
         <div class="resource">
           <label for="system.xp" class="resource-label"><small>XP</small></label>
@@ -87,6 +87,7 @@
     <a class="item" data-tab="skills">Skills</a>
     <a class="item" data-tab="spells">Spells</a>
     <a class="item" data-tab="items">Inventory</a>
+    <a class="item" data-tab="quests">Quest Log</a>
   </nav>
 
   <section class="sheet-body">
@@ -130,10 +131,8 @@
       </section>
     </div>
 
-    {{!-- Biography Tab --}}
-    <div class="tab biography" data-group="primary" data-tab="description">
-      {{!-- Editors must receive enriched text data from getData to properly handle rolls --}}
-      {{editor enrichedBiography target="system.biography" engine="prosemirror" button=true editable=editable}}
+    <div class="tab skills" data-group="primary" data-tab="skills">
+      {{> "systems/infinitys-edge/templates/actor/parts/actor-skills.hbs"}}
     </div>
 
     {{!-- Owned Items Tab --}}
