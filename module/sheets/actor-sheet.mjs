@@ -12,7 +12,7 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['infinitys-edge', 'sheet', 'actor'],
-      width: 1000,
+      width: 1300,
       height: 600,
       tabs: [
         {

@@ -92,25 +92,28 @@
   <section class="sheet-body">
     <div class="tab features" data-group="primary" data-tab="features">
       <section class="grid grid-5col">
-        <aside class="sidebar">
-          <div class="abilities flexcol box">
-            <div class="ability flexrow flex-group-center attribute-header">
-              <label class="resource-label flexlarge align-left">Attribute</label>
-              <label class="resource-label">Base</label>
-              <label class="resource-label">Bonus</label>
+        <aside class="sidebar grid-span-1">
+          <div class="">
+            <div class="abilities box">
+              <div class="grid grid-3col attribute-header">
+                <label class="resource-label">Attribute</label>
+                <label class="resource-label">Base</label>
+                <label class="resource-label">Bonus</label>
+              </div>
+              <div class="grid grid-3col">
+                {{#each system.abilities as |ability key|}}
+                <label for="system.abilities.{{key}}.value" class="resource-label rollable" data-roll="d100"
+                  data-label="{{localize (lookup @root.config.abilities key)}}">{{localize (lookup
+                  @root.config.abilities
+                  key)}}</label>
+                <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}"
+                  data-dtype="Number" />
+                <span class="ability-mod rollable" data-roll="d100+@abilities.{{key}}.mod"
+                  data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0
+                  sign=true}}</span>
+                {{/each}}
+              </div>
             </div>
-            {{#each system.abilities as |ability key|}}
-            <div class="ability grid-3col flexrow flex-group-center" style="margin-top:15px;">
-              <label for="system.abilities.{{key}}.value" class="resource-label rollable flexlarge align-left"
-                data-roll="d100"
-                data-label="{{localize (lookup @root.config.abilities key)}}">{{localize (lookup @root.config.abilities
-                key)}}</label>
-              <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number" />
-              <span class="ability-mod rollable" data-roll="d100+@abilities.{{key}}.mod"
-                data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0
-                sign=true}}</span>
-            </div>
-            {{/each}}
           </div>
         </aside>
 
