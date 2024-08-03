@@ -138,6 +138,8 @@ Hooks.on('renderChatMessage', async (message, html, data) => {
     progBtn.click(async ev => {
       ev.stopPropagation();
       localStorage.setItem(idProg, true); 
+      html.find(`#${idProg}`).attr("disabled", "")
+      
 
       if (item.system.level === 0) {
         await item.update({ "system.level": 1 });
