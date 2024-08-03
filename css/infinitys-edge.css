@@ -260,6 +260,20 @@
 .infinitys-edge .tox .tox-edit-area {
   padding: 0 8px;
 }
+.infinitys-edge .dice-damage-btn {
+  margin-top: 5px;
+  height: 25px;
+  font-size: 15px;
+  line-height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.infinitys-edge .dice-prog-btn {
+  margin-top: 5px;
+  height: 25px;
+  font-size: 15px;
+  line-height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
 .infinitys-edge .resource-label {
   font-weight: bold;
 }

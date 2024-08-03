@@ -4,7 +4,7 @@
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
-      <div class="resources grid grid-2col">
+      <div class="resources grid grid-3col">
         <div class="resource">
           <label for="system.ancestry" class="resource-label"><small>Ancestry</small></label>
           <input type="text" name="system.ancestry" value="{{system.ancestry}}" data-dtype="Number" />
@@ -12,6 +12,10 @@
         <div class="resource">
           <label for="system.faction" class="resource-label"><small>Faction</small></label>
           <input type="text" name="system.faction" value="{{system.faction}}" data-dtype="Number" />
+        </div>
+        <div class="resource">
+          <label for="system.credits" class="resource-label"><small>Credits</small></label>
+          <input type="text" name="system.credits" value="{{system.credits}}" data-dtype="Number" />
         </div>
       </div>
       <div class="resources grid grid-3col">
@@ -80,10 +84,9 @@
 
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="features">Features</a>
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="items">Items</a>
+    <a class="item" data-tab="skills">Skills</a>
     <a class="item" data-tab="spells">Spells</a>
-    <a class="item" data-tab="effects">Effects</a>
+    <a class="item" data-tab="items">Inventory</a>
   </nav>
 
   <section class="sheet-body">

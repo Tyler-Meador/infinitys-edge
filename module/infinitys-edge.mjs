@@ -97,6 +97,43 @@ Hooks.once('ready', function () {
   Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
 });
 
+Hooks.on('renderChatMessage', async (message, html, data) => {
+  if (!message.isRoll) return;
+  if (Object.keys(message.system).length === 0) return;
+
+  const item = await fromUuid(message.system.itemId);
+
+  if (message.rolls[0].total <= item.system.hitChance) {
+    const dmgBtn = $(`<button class="dice-damage-btn" id=${message._id + "-dmg"}>Roll Damage</i></button>`);
+    const progBtn = $(`<button class="dice-prog-btn" id=${message._id + "-prog"}>Increase Progress</i></button>`);
+
+    const btnContainer = $('<div class="infinitys-edge grid grid-2col"></div>');
+    btnContainer.append(dmgBtn);
+    btnContainer.append(progBtn);
+
+    html.find('.message-content').append(btnContainer);
+    dmgBtn.click(ev => {
+      ev.stopPropagation();
+      if (!document.getElementById(message._id + "-dmg").disabled) {
+        document.getElementById(message._id + "-dmg").disabled = true;
+
+        const dataset = { "rollType": "item" };
+
+        item.roll(dataset);
+      }
+    });
+
+    progBtn.click(ev => {
+      ev.stopPropagation();
+      if (!document.getElementById(message._id + "-prog").disabled) {
+        document.getElementById(message._id + "-prog").disabled = true;
+
+        item.system.successfulHit();
+      }
+    });
+  }
+});
+
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */

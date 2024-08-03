@@ -16,9 +16,28 @@ export default class InfinitysEdgeWeapon extends InfinitysEdgeItemBase {
     schema.enhancements = new fields.StringField({ required: true, blank: true });
 
     schema.formula = new fields.StringField({ blank: true });
-    schema.hitChance = new fields.NumberField({ ...requiredInteger, initial: 60, min: 0 })
+    schema.hitChance = new fields.NumberField({ ...requiredInteger, initial: 60, min: 0 });
+
+    schema.skillProgress = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
+    schema.skillLevelUp = new fields.NumberField({ ...requiredInteger, initial: 5, min: 0});
 
     return schema;
+  }
+
+  successfulHit() {
+    //todo: move to item class, won't persist here.
+    this.parent.system.skillProgress += 1;
+    console.log(this.parent)
+
+    if (this.parent.system.skillProgress === this.parent.system.skillLevelUp) {
+      this.parent.system.skillProgress = 0;
+      this.parent.system.level += 1;
+      this.parent.system.skillLevelUp = this.parent.system.level * 5;
+    }
+
+    ChatMessage.create({
+      content: `Skill Progress: ${this.parent.system.skillProgress}/${this.parent.system.skillLevelUp}`
+    })
   }
 
   prepareDerivedData() {

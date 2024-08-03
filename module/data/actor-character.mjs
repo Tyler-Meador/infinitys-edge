@@ -8,6 +8,7 @@ export default class InfinitysEdgeCharacter extends InfinitysEdgeActorBase {
     const schema = super.defineSchema();
 
     schema.xp = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
+    schema.credits = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
     
     return schema;
   }

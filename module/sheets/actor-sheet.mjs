@@ -145,10 +145,13 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
         }
       }
       else if (i.type === 'weapon') {
+        if (i.system.level <= this.actor.system.level) {
+          i.system.skillLevelUp = i.system.level * 5
+        }
         weapons.push(i);
       } else if (i.type === 'armor') {
         var armorType = i.system.armorType.toLowerCase()
-        
+
         if (i.system.armorType != undefined) {
           armor[armorType] = i;
         }
@@ -257,7 +260,7 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
       if (dataset.rollType == 'item') {
         const itemId = element.closest('.item').dataset.itemId;
         const item = this.actor.items.get(itemId);
-        if (item) return item.roll();
+        if (item) return item.roll(dataset);
       }
     }
 

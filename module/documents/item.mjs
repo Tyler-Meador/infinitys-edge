@@ -55,7 +55,7 @@ export class InfinitysEdgeItem extends Item {
    * @param {Event} event   The originating click event
    * @private
    */
-  async roll() {
+  async roll(dataset) {
     const item = this;
 
     // Initialize chat data.
@@ -78,15 +78,27 @@ export class InfinitysEdgeItem extends Item {
       const rollData = this.getRollData();
 
       // Invoke the roll and submit it to chat.
-      const roll = new Roll(rollData.formula, rollData.actor);
+      
       // If you need to store the value first, uncomment the next line.
       // const result = await roll.evaluate();
-      roll.toMessage({
-        speaker: speaker,
-        rollMode: rollMode,
-        flavor: label,
-      });
-      return roll;
+      if (item.type === 'weapon' && dataset.roll) {
+        const roll = new Roll(dataset.roll, rollData.actor);
+        roll.toMessage({
+          speaker: speaker,
+          rollMode: rollMode,
+          flavor: label,
+          system: {"itemId": this.uuid}
+        })
+        return roll;
+      } else {
+        const roll = new Roll(rollData.formula, rollData.actor);
+        roll.toMessage({
+          speaker: speaker,
+          rollMode: rollMode,
+          flavor: label,
+        });
+        return roll;
+      }
     }
   }
 }
