@@ -14,6 +14,7 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
       classes: ['infinitys-edge', 'sheet', 'actor'],
       width: 1300,
       height: 600,
+      resizable: true,
       tabs: [
         {
           navSelector: '.sheet-tabs',

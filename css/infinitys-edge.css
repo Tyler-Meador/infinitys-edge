@@ -277,6 +277,12 @@
 .infinitys-edge .ability {
   min-width: 250px;
 }
+.infinitys-edge .character {
+  min-width: 1300px;
+}
+.infinitys-edge .window-content {
+  overflow-x: auto;
+}
 .infinitys-edge .resource-label {
   font-weight: bold;
 }
