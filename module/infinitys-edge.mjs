@@ -101,38 +101,82 @@ Hooks.on('renderChatMessage', async (message, html, data) => {
   if (!message.isRoll) return;
   if (Object.keys(message.system).length === 0) return;
 
+  const idDmg = message._id + "-dmg";
+  const idProg = message._id + "-prog";
+
   const item = await fromUuid(message.system.itemId);
 
   if (message.rolls[0].total <= item.system.hitChance) {
-    const dmgBtn = $(`<button class="dice-damage-btn" id=${message._id + "-dmg"}>Roll Damage</i></button>`);
-    const progBtn = $(`<button class="dice-prog-btn" id=${message._id + "-prog"}>Increase Progress</i></button>`);
+    const dmgBtn = $(`<button class="dice-damage-btn" id=${idDmg}>Roll Damage</i></button>`);
+    const progBtn = $(`<button class="dice-prog-btn" id=${idProg}>Increase Progress</i></button>`);
 
     const btnContainer = $('<div class="infinitys-edge grid grid-2col"></div>');
     btnContainer.append(dmgBtn);
     btnContainer.append(progBtn);
 
     html.find('.message-content').append(btnContainer);
+
+    if (localStorage.getItem(idDmg)) {
+      html.find(`#${idDmg}`).attr("disabled", "")
+    }
+
+    if (localStorage.getItem(idProg)) {
+      html.find(`#${idProg}`).attr("disabled", "")
+    }
+
     dmgBtn.click(ev => {
       ev.stopPropagation();
-      if (!document.getElementById(message._id + "-dmg").disabled) {
-        document.getElementById(message._id + "-dmg").disabled = true;
 
-        const dataset = { "rollType": "item" };
+      localStorage.setItem(idDmg, true);
+      html.find(`#${idDmg}`).attr("disabled", "")
 
-        item.roll(dataset);
-      }
+      const dataset = { "rollType": "item" };
+
+      item.roll(dataset);
     });
 
-    progBtn.click(ev => {
+    progBtn.click(async ev => {
       ev.stopPropagation();
-      if (!document.getElementById(message._id + "-prog").disabled) {
-        document.getElementById(message._id + "-prog").disabled = true;
+      localStorage.setItem(idProg, true); 
 
-        item.system.successfulHit();
+      if (item.system.level === 0) {
+        await item.update({ "system.level": 1 });
+
+        ChatMessage.create({
+          speaker: ChatMessage.getSpeaker({ actor: item.parent }),
+          content: `Level Up! ${item.name} is now level: ${item.system.level}`
+        });
+      } else {
+        await item.update({ "system.skillProgress": item.system.skillProgress + 1 });
+
+        if (item.system.skillProgress === item.system.skillLevelUp) {
+          await item.update({ "system.skillProgress": 0 });
+          await item.update({ "system.level": item.system.level + 1 });
+          await item.update({ "system.skillLevelUp": item.system.skillLevelUp + 1 });
+
+          ChatMessage.create({
+            speaker: ChatMessage.getSpeaker({ actor: item.parent }),
+            content: `Level Up! ${item.name} is now level: ${item.system.level}`
+          });
+        } else {
+          ChatMessage.create({
+            speaker: ChatMessage.getSpeaker({ actor: item.parent }),
+            content: `Skill Progress: ${item.system.skillProgress}/${item.system.skillLevelUp}`
+          })
+        }
       }
     });
   }
 });
+
+Hooks.on('deleteChatMessage', async (message, html, data) => {
+  const dmgId = message._id + "-dmg";
+  const progId = message._id + "-prog";
+
+  localStorage.removeItem(dmgId);
+  localStorage.removeItem(progId);
+});
+
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */

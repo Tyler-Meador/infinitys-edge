@@ -24,22 +24,6 @@ export default class InfinitysEdgeWeapon extends InfinitysEdgeItemBase {
     return schema;
   }
 
-  successfulHit() {
-    //todo: move to item class, won't persist here.
-    this.parent.system.skillProgress += 1;
-    console.log(this.parent)
-
-    if (this.parent.system.skillProgress === this.parent.system.skillLevelUp) {
-      this.parent.system.skillProgress = 0;
-      this.parent.system.level += 1;
-      this.parent.system.skillLevelUp = this.parent.system.level * 5;
-    }
-
-    ChatMessage.create({
-      content: `Skill Progress: ${this.parent.system.skillProgress}/${this.parent.system.skillLevelUp}`
-    })
-  }
-
   prepareDerivedData() {
 
     var attr;
@@ -89,6 +73,12 @@ export default class InfinitysEdgeWeapon extends InfinitysEdgeItemBase {
     }
 
     this.hitChance = 60 + this.level;
+    
+    if (this.level === 0) {
+      this.skillLevelUp = 3;
+    } else {
+      this.skillLevelUp = this.level * 5;
+    }
   }
 
 }
