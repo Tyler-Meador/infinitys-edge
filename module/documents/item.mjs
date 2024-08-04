@@ -91,6 +91,19 @@ export class InfinitysEdgeItem extends Item {
         })
         return roll;
       } else {
+        let formula;
+
+        if(dataset.isCrit) {
+          const formDecon = rollData.formula.split("+");
+
+          const base = Number(formDecon[0]) * 2;
+          
+          const dice = Number(formDecon[2].substring(0, formDecon[2].indexOf("d"))) * 2;
+
+          rollData.formula = base + "+" + formDecon[1] + "+" + dice + formDecon[2].substring(formDecon[2].indexOf("d"));
+        }
+
+
         const roll = new Roll(rollData.formula, rollData.actor);
         roll.toMessage({
           speaker: speaker,

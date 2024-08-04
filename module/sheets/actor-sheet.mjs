@@ -209,6 +209,26 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
       onManageActiveEffect(ev, document);
     });
 
+    html.on('click', '.describe', (ev) => {
+      ev.preventDefault();
+      const element = ev.currentTarget;
+      const itemId = element.closest('.item').dataset.itemId;
+      const item = this.actor.items.get(itemId);
+
+      const label = `[${item.type}] ${item.name}`;
+      const speaker = ChatMessage.getSpeaker({ actor: this.actor });
+
+
+      console.log(item)
+      if (item.system.description) {
+        ChatMessage.create({
+          speaker: speaker,
+          flavor: label,
+          content: item.system.description,
+        });
+      }
+    });
+
     // Rollable abilities.
     html.on('click', '.rollable', this._onRoll.bind(this));
 
@@ -231,13 +251,10 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
   async _onItemCreate(event) {
     event.preventDefault();
     const header = event.currentTarget;
-    // Get the type of item to create.
     const type = header.dataset.type;
-    // Grab any data associated with this control.
     const data = duplicate(header.dataset);
-    // Initialize a default name.
     const name = `New ${type.capitalize()}`;
-    // Prepare the item object.
+
     if (type === 'skill') {
       const dialogOptions = {
         height: "100%",
@@ -266,7 +283,7 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
         system: {
           "cost": result.cost,
           "skillType": result.type,
-         },
+        },
       };
 
       return await Item.create(itemData, { parent: this.actor });

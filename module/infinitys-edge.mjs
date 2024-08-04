@@ -104,10 +104,16 @@ Hooks.on('renderChatMessage', async (message, html, data) => {
 
   const idDmg = message._id + "-dmg";
   const idProg = message._id + "-prog";
+  let crit = false;
 
   const item = await fromUuid(message.system.itemId);
+  const rollTotal = message.rolls[0].total;
 
-  if (message.rolls[0].total <= item.system.hitChance) {
+  if (rollTotal <= 30) {
+    crit = true;
+  }
+
+  if (rollTotal <= item.system.hitChance) {
     const dmgBtn = $(`<button class="dice-damage-btn" id=${idDmg}>Roll Damage</i></button>`);
     const progBtn = $(`<button class="dice-prog-btn" id=${idProg}>Increase Progress</i></button>`);
 
@@ -131,7 +137,10 @@ Hooks.on('renderChatMessage', async (message, html, data) => {
       localStorage.setItem(idDmg, true);
       html.find(`#${idDmg}`).attr("disabled", "")
 
-      const dataset = { "rollType": "item" };
+      const dataset = {
+        "rollType": "item",
+        "isCrit": crit,
+      };
 
       item.roll(dataset);
     });
