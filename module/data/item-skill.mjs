@@ -10,7 +10,7 @@ export default class InfinitysEdgeSkill extends InfinitysEdgeItemBase {
     schema.skillType = new fields.StringField({ initial: "" });
     schema.cost = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
     schema.description = new fields.StringField({ initial: ""});
-    schema.formula = new fields.StringField({ initial: ""});
+    schema.formula = new fields.StringField({ initial: "1d100"});
     schema.level = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0});
 
     schema.skillProgress = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });

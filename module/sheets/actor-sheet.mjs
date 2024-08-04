@@ -238,16 +238,53 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
     // Initialize a default name.
     const name = `New ${type.capitalize()}`;
     // Prepare the item object.
-    const itemData = {
-      name: name,
-      type: type,
-      system: data,
-    };
-    // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.system['type'];
+    if (type === 'skill') {
+      const dialogOptions = {
+        height: "100%",
+      }
 
-    // Finally, create the item!
-    return await Item.create(itemData, { parent: this.actor });
+      const content = await renderTemplate("systems/infinitys-edge/templates/item/parts/item-skill-dialog.hbs")
+
+      let result = await Dialog.wait({
+        content: content,
+        buttons: {
+          submit: {
+            label: "Submit",
+            callback: (html) => {
+              const formElement = html[0].querySelector('form');
+              const formData = new FormDataExtended(formElement);
+              const formDataObject = formData.object;
+              return formDataObject;
+            }
+          },
+        },
+      }, dialogOptions);
+
+      const itemData = {
+        name: result.name,
+        type: "skill",
+        system: {
+          "cost": result.cost,
+          "skillType": result.type,
+         },
+      };
+
+      return await Item.create(itemData, { parent: this.actor });
+
+    } else {
+      const itemData = {
+        name: name,
+        type: type,
+        system: data,
+      };
+
+      // Remove the type from the dataset since it's in the itemData.type prop.
+      delete itemData.system['type'];
+
+      // Finally, create the item!
+      return await Item.create(itemData, { parent: this.actor });
+    }
+
   }
 
   /**
