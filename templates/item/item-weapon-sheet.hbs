@@ -55,7 +55,9 @@
           </div>
           <div class="grid-span-1">
             <label class="resource-label">Attribute</label>
-            <input type='text' name='system.attribute' value='{{system.attribute}}' data-dtype='String' />
+            <select name="system.attribute">
+              {{selectOptions system.selectAttributeData selected=system.attribute valueAttr="key" labelAttr="label"}}
+            </select>
           </div>
           <div class="grid-span-1">
             <label class="resource-label">Bonus Dice</label>
