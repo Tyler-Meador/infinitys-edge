@@ -9,6 +9,8 @@ export default class InfinitysEdgeCharacter extends InfinitysEdgeActorBase {
 
     schema.xp = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
     schema.credits = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
+
+    schema.pointsAvailable = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0});
     
     return schema;
   }
