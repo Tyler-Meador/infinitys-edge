@@ -17,5 +17,13 @@ export default class InfinitysEdgeSkill extends InfinitysEdgeItemBase {
     schema.skillLevelUp = new fields.NumberField({ ...requiredInteger, initial: 5, min: 0});
 
     return schema;
+  } 
+  
+  prepareDerivedData() {
+    if (this.level === 0) {
+      this.skillLevelUp = 3;
+    } else {
+      this.skillLevelUp = this.level * 5;
+    }
   }
 }

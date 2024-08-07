@@ -109,7 +109,7 @@ Hooks.on('renderChatMessage', async (message, html, data) => {
   const item = await fromUuid(message.system.itemId);
   const rollTotal = message.rolls[0].total;
 
-  if (rollTotal <= 30) {
+  if (rollTotal <= 5) {
     crit = true;
   }
 
@@ -164,7 +164,6 @@ Hooks.on('renderChatMessage', async (message, html, data) => {
         if (item.system.skillProgress === item.system.skillLevelUp) {
           await item.update({ "system.skillProgress": 0 });
           await item.update({ "system.level": item.system.level + 1 });
-          await item.update({ "system.skillLevelUp": item.system.skillLevelUp + 1 });
 
           ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ actor: item.parent }),
@@ -179,14 +178,6 @@ Hooks.on('renderChatMessage', async (message, html, data) => {
       }
     });
   }
-});
-
-Hooks.on('deleteChatMessage', async (message, html, data) => {
-  const dmgId = message._id + "-dmg";
-  const progId = message._id + "-prog";
-
-  localStorage.removeItem(dmgId);
-  localStorage.removeItem(progId);
 });
 
 

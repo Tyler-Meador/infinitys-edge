@@ -27,41 +27,49 @@ export default class InfinitysEdgeWeapon extends InfinitysEdgeItemBase {
   prepareDerivedData() {
 
     var attr;
+    var mod;
 
     switch (this.attribute.toLowerCase()) {
       case "strength":
       case "str":
         attr = "@str.mod";
+        mod = this.parent.parent.system.abilities.str.value
         break;
 
       case "dexterity":
       case "dex":
         attr = "@dex.mod";
+        mod = this.parent.parent.system.abilities.dex.value
         break;
 
       case "vitality":
       case "vit":
         attr = "@vit.mod";
+        mod = this.parent.parent.system.abilities.vit.value
         break;
 
       case "intelligence":
       case "int":
         attr = "@int.mod";
+        mod = this.parent.parent.system.abilities.int.value
         break;
 
       case "wisdom":
       case "wis":
         attr = "@wis.mod";
+        mod = this.parent.parent.system.abilities.wis.value
         break;
 
       case "willpower":
       case "wil":
         attr = "@wil.mod";
+        mod = this.parent.parent.system.abilities.wil.value
         break;
 
       case "charisma":
       case "cha":
         attr = "@cha.mod";
+        mod = this.parent.parent.system.abilities.cha.value
         break;
 
       default:
@@ -72,7 +80,7 @@ export default class InfinitysEdgeWeapon extends InfinitysEdgeItemBase {
       this.formula = `${this.damage}+${attr}+${this.dice}`;
     }
 
-    this.hitChance = 60 + this.level;
+    this.hitChance = 60 + this.level + (mod / 10);
     
     if (this.level === 0) {
       this.skillLevelUp = 3;

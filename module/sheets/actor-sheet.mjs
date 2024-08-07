@@ -229,6 +229,42 @@ export class InfinitysEdgeActorSheet extends ActorSheet {
       }
     });
 
+    var content;
+
+    html.on('click', '.item-progress', async (ev) => {
+      ev.preventDefault();
+      const element = ev.currentTarget;
+      const itemId = element.closest('.item').dataset.itemId;
+      const item = this.actor.items.get(itemId);
+
+      const label = `[${item.type}] ${item.name}`;
+      const speaker = ChatMessage.getSpeaker({ actor: this.actor });
+
+      if (item.system.level === 0) {
+        await item.update({ "system.level": 1 });
+
+
+        content = `Level Up! ${item.name} is now level: ${item.system.level}`
+      } else if (item.system.skillProgress + 1 === item.system.skillLevelUp) {
+        await item.update({ "system.skillProgress": 0 });
+        await item.update({ "system.level": item.system.level + 1 });
+
+        content = `Level Up! ${item.name} is now level: ${item.system.level}`
+      } else {
+        await item.update({ "system.skillProgress": item.system.skillProgress + 1 });
+
+        content = `Skill Progress: ${item.system.skillProgress}/${item.system.skillLevelUp}`
+      }
+
+      ChatMessage.create({
+        speaker: speaker,
+        flavor: label,
+        content: content,
+      });
+
+    });
+
+
     // Rollable abilities.
     html.on('click', '.rollable', this._onRoll.bind(this));
 

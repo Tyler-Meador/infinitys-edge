@@ -91,8 +91,6 @@ export class InfinitysEdgeItem extends Item {
         })
         return roll;
       } else {
-        let formula;
-
         if(dataset.isCrit) {
           const formDecon = rollData.formula.split("+");
 
