@@ -16,4 +16,16 @@ export default class InfinitysEdgeArmor extends InfinitysEdgeItemBase {
 
     return schema;
   }
+
+
+  prepareDerivedData() {
+    this.selectArmor = {
+      head: {key: "head", label: "Head"},
+      torso: {key: "torso", label: "Torso"},
+      armR: {key: "armR", label: "Right Arm"},
+      armL: {key: "armL", label: "Left Arm"},
+      legR: {key: "legR", label: "Right Leg"},
+      legL: {key: "legL", label: "Left Leg"},
+    }
+  }
 }

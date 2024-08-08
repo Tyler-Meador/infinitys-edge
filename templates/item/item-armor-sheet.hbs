@@ -33,7 +33,10 @@
     <div class='tab attributes' data-group='primary' data-tab='attributes'>
       <div class="resource">
         <label class='resource-label'>Armor Type</label>
-        <input type='text' name='system.armorType' value='{{system.armorType}}' data-dtype='String' />
+            <select name="system.armorType">
+              {{selectOptions system.selectArmor selected=system.armorType valueAttr="key" labelAttr="label"}}
+              {{log system.armorType}}
+            </select>
         <div class="grid grid-3col">
           <div class="grid-span-1">
             <label class="resource-label">Level</label>
